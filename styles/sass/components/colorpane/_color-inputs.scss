@@ -3,7 +3,7 @@
 	background: rgba(255,255,255,.75);
 	display: flex;
 	flex-direction: column;
-	width: 22rem;
+	width: 25rem;
 }
 
 .color-input {
@@ -16,6 +16,8 @@
 }
 .color-input__display {
 	margin: 2px 0;
+	font: $font-large;
+	font-weight: $fw-light;
 }
 .editing .color-input__display {
 	display: none;

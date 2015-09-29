@@ -17,6 +17,10 @@ canvas {
 input {
 	max-width: 100%;
 }
+[data-reactid] {
+	font-weight: inherit;
+	font: inherit;
+}
 // Layout
 .site-main {
 	display: flex;

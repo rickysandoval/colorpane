@@ -12,6 +12,8 @@ var gutil = require('gulp-util');
 var shell = require('gulp-shell');
 var connect = require('gulp-connect');
 var sass = require('gulp-sass');
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
 
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
@@ -91,6 +93,7 @@ var cssTask = function(options) {
 			gulp.src(options.src)
 				.pipe(sass().on('error', sass.logError))
 				.pipe(gulp.dest(options.dest))
+				.pipe(browserSync.stream())
 				.pipe(notify(function() {
 					console.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
 				}));
@@ -106,6 +109,11 @@ var cssTask = function(options) {
 };
 
 gulp.task('default', function() {
+	browserSync.init({
+		server: './build',
+		files: ['js/**']
+	});
+
 	browserifyTask({
 		development: true,
 		src: './js/main.js',
@@ -116,11 +124,6 @@ gulp.task('default', function() {
 		development: true,
 		src: './styles/sass/main.scss',
 		dest: './build'
-	});
-
-	connect.server({
-		root: 'build/',
-		port: 7778
 	});
 });
 
