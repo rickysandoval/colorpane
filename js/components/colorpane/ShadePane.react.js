@@ -10,6 +10,7 @@ var active = false;
 var lastMove = 0;
 var moveThrottle = 1;
 var painting = false;
+var lastHue;
 var wrapperStyle = {
 	display: 'inline-block',
 	padding: padding + 'px',
@@ -37,6 +38,7 @@ var DisplayPane = React.createClass({
 		var context = canvas.getContext('2d');
     	this.paint(context);
     	this.moveMarker();
+    	lastHue = this.props.hue;
 
     	window.addEventListener('optimizedResize', this.resize)
     	document.body.addEventListener('mousedown', function(){
@@ -48,14 +50,14 @@ var DisplayPane = React.createClass({
 	},
 
 	componentDidUpdate: function(prevProps) {
-		if (!mouseDown && prevProps.hue != this.props.hue) {
-			console.log('paoint');
+		if (!mouseDown && lastHue != this.props.hue) {
+			lastHue = this.props.hue;
 			var context = React.findDOMNode(this.refs.shadePaneCanvas).getContext('2d');
     		this.paint(context);
 		}
 
 		if (prevProps.saturation != this.props.saturation || prevProps.lightness != this.props.lightness) {
-			this.moveMarker();
+			//this.moveMarker();
 		}
 	},
 
@@ -196,6 +198,9 @@ var DisplayPane = React.createClass({
 			r = size/2;
 
 		if (Math.sqrt(Math.pow(x-r,2) + Math.pow(y-r,2)) > r){
+			if (Math.sqrt(Math.pow(x-r,2) + Math.pow(y-r,2)) > r+padding) {
+				return;
+			}
 			var m = (y-r)/(x-r),
 				norm = Math.sqrt(1 + m*m),
 				sign = x < r ? -1 : 1;
