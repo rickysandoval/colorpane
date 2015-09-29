@@ -11,6 +11,7 @@ var cssmin = require('gulp-cssmin');
 var gutil = require('gulp-util');
 var shell = require('gulp-shell');
 var connect = require('gulp-connect');
+var sass = require('gulp-sass');
 
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
@@ -85,19 +86,20 @@ var browserifyTask = function(options) {
 var cssTask = function(options) {
 	if (options.development) {
 		var run = function() {
-			console.log(arguments);
 			var start = new Date();
 			console.log('Building css bundle');
 			gulp.src(options.src)
+				.pipe(sass().on('error', sass.logError))
 				.pipe(gulp.dest(options.dest))
 				.pipe(notify(function() {
 					console.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
 				}));
 		};
 		run();
-		gulp.watch(options.src, run);
+		gulp.watch('./styles/sass/**/*.scss', run);
 	} else {
 		gulp.src(options.src)
+		.pipe(sass().on('error', sass.logError))
 		.pipe(cssmin())
 		.pipe(gulp.dest(options.dest));
 	}
@@ -112,7 +114,7 @@ gulp.task('default', function() {
 
 	cssTask({
 		development: true,
-		src: './styles/css/main.css',
+		src: './styles/sass/main.scss',
 		dest: './build'
 	});
 
@@ -131,7 +133,7 @@ gulp.task('deploy', function() {
 
 	cssTask({
 		development: false,
-		src: './styles/css/main.css',
+		src: './styles/sass/main.scss',
 		dest: './dist'
 	});
 });

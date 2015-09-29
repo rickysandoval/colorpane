@@ -1,0 +1,22 @@
+.picker-inputs {
+	padding: $unit;
+	background: rgba(255,255,255,.75);
+	display: flex;
+	flex-direction: column;
+	width: 22rem;
+}
+
+.color-input {
+	margin-right: 2.5*$unit;
+	margin-bottom: 1.5*$unit;
+}
+.color-input__label {
+	font: $font-xlarge;
+	font-weight: $fw-light;
+}
+.color-input__display {
+	margin: 2px 0;
+}
+.editing .color-input__display {
+	display: none;
+}

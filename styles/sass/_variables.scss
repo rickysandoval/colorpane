@@ -1,0 +1,21 @@
+$unit: 10px;
+
+/** Colors **/
+$black: #0F0F0F;
+
+
+/** Typography **/
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+$sans-serif: 'Lato', sans-serif;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-bold: 700;
+
+$font-normal: 1.6rem/1.375em 'Lato';
+$font-large: 1.8rem/1.375em 'Lato';
+$font-xlarge: 2.2rem/1.365em 'Lato';
+
+$font-h1: 4.0rem/1.25em 'Lato';
+$font-h2: 3.2rem/1.25 'Lato';

@@ -1,5 +1,4 @@
 var React = require('react');
-var ReactPropTypes = React.PropTypes;
 var classNames = require('classnames');
 
 var ColorActions = require('./../../actions/ColorActions');
@@ -33,13 +32,12 @@ var HexDisplay = React.createClass({
 
 		return (
 			<div
-				className={classNames({
+				className={classNames('color-input', {
 					'editing': this.state.isEditing
 				})}>
-				<div className={'input-display'}
-					onDoubleClick={this._onDoubleClick}>
-					<div>Hex</div>
-					<div>#{ hex }</div>
+				<div onDoubleClick={this._onDoubleClick}>
+					<div className="color-input__label">Hex</div>
+					<div className="color-input__display">#{ hex }</div>
 				</div>
 				{input}
 			</div>

@@ -1,0 +1,13 @@
+.color-pane {
+	width: 100%;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+}
+.shade-pane {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 45%;
+}

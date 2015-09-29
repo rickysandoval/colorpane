@@ -21,10 +21,12 @@ var DisplayPane = React.createClass({
 	render: function() {
 		style.backgroundColor = '#' + utils.hsl2hex(this.props.hue, this.props.saturation, this.props.lightness);
 		return (
-			<div className="picker-display" style={style}> 
-				<HsvDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
-				<RgbDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
-				<HexDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
+			<div className="picker-display" style={style}>
+			 	<div className="picker-inputs">
+					<HsvDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
+					<RgbDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
+					<HexDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
+				</div>
 			</div>
 		);
 	}

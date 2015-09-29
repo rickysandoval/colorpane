@@ -1,0 +1,37 @@
+html {
+	font-size: 62.5%;
+	font-family: $sans-serif;
+	* {
+		margin: 0;
+		box-sizing: border-box;
+		font: $font-normal;
+	}
+}
+
+body {
+	color: $black;
+}
+canvas {
+	display: block;
+}
+input {
+	max-width: 100%;
+}
+// Layout
+.site-main {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	padding: $unit;
+}
+
+.picker-controls, .picker-display {
+	min-width: 300px;
+	overflow: hidden;
+	position: relative;
+}
+.picker-controls {
+	width: 33%;
+	max-width: 600px;
+	padding: 2.5*$unit;
+}

@@ -1,0 +1,9 @@
+.site-header {
+	padding: $unit;
+	border-bottom: 1px solid $black;
+}
+
+.site-header__title {
+	font: $font-h1;
+	font-weight: $fw-light;
+}

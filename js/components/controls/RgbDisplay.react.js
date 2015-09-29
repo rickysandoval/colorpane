@@ -1,5 +1,6 @@
 var React = require('react');
-var ReactPropTypes = React.PropTypes;
+var classNames = require('classnames');
+
 var ColorActions = require('./../../actions/ColorActions');
 var colorUtils = require('./../../utils/colorUtil');
 
@@ -12,9 +13,9 @@ var RgbDisplay = React.createClass({
 	render: function() {
 		var rgb = colorUtils.hsl2rgb(this.props.color[0], this.props.color[1], this.props.color[2]);
 		return (
-			<div>
-				<div>RGB</div>
-				<div>{rgb[0]}, {rgb[1]}, {rgb[2]}</div>
+			<div className={classNames('color-input')}>
+				<div className="color-input__label">RGB</div>
+				<div className="color-input__display">{rgb[0]}, {rgb[1]}, {rgb[2]}</div>
 			</div>
 		);
 	},
