@@ -1,24 +1,25 @@
 var React = require('react');
-var ReactPropTypes = React.PropTypes;
-var ColorActions = require('./../../actions/ColorActions');
-var colorUtils = require('./../../utils/colorUtil');
 
-var Hexinput = React.createClass({
+var HexInput = React.createClass({
 
 	propTypes: {
-		color: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
+		onSave: React.PropTypes.func.isRequired,
+		hex: React.PropTypes.string
+	},
+
+	getInitialState: function() {
+		return {
+			value: this.props.hex || ''
+		};
 	},
 
 	render: function() {
-		var hex = colorUtils.hsl2hex(this.props.color[0], this.props.color[1], this.props.color[2]);
 		return (
-			<div>
-				<div>Hex</div>
-				<div>#{ hex }</div>
-			</div>
+			<input 
+				value={this.state.value}
+			/>
 		);
-	},
-
+	}
 });
 
-module.exports = Hexinput;
+module.exports = HexInput;

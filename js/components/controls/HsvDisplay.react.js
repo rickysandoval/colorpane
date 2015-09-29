@@ -1,7 +1,7 @@
 var React = require('react');
 var ColorActions = require('./../../actions/ColorActions');
 
-var HSVinput = React.createClass({
+var HsvDisplay = React.createClass({
 
 	propTypes: {
 		color: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
@@ -28,4 +28,4 @@ var HSVinput = React.createClass({
 
 });
 
-module.exports = HSVinput;
+module.exports = HsvDisplay;

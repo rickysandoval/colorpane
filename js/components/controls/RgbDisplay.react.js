@@ -3,7 +3,7 @@ var ReactPropTypes = React.PropTypes;
 var ColorActions = require('./../../actions/ColorActions');
 var colorUtils = require('./../../utils/colorUtil');
 
-var RGBinput = React.createClass({
+var RgbDisplay = React.createClass({
 
 	propTypes: {
 		color: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
@@ -21,4 +21,4 @@ var RGBinput = React.createClass({
 
 });
 
-module.exports = RGBinput;
+module.exports = RgbDisplay;
