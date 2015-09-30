@@ -97,12 +97,19 @@ var ColorPane = React.createClass({
 		active = true;
 		this._setColor(down_event);
 		var that = this;
+
+		var mouseMove = function(move_event) {
+			document.body.removeEventListener('mouseup', mouseMove);
+			that._setColor(move_event);
+		};
 		var mouseUp = function(up_event) {
 			active = false;
 			document.body.removeEventListener('mouseup', mouseUp);
+			document.body.removeEventListener('mousemove', mouseMove);
 			that._setColor(up_event);
 		};
 		document.body.addEventListener('mouseup', mouseUp);
+		document.body.addEventListener('mousemove', mouseMove);
 	},
 
 	_handleMouseLeave: function(event) {
