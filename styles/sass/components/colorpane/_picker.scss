@@ -4,10 +4,20 @@
 	position: relative;
 	overflow: hidden;
 }
+.shade-pane__window {
+	height: 0;
+	padding-bottom: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+}
 .shade-pane {
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 45%;
+}
+.shade-pane__canvas {
+	margin-left: -1px;
+	margin-top: -1px;
 }

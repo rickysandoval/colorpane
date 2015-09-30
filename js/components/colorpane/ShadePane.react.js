@@ -18,9 +18,6 @@ var wrapperStyle = {
 	borderRadius: '50%'
 };
 var mouseDown = 0;
-var markerStyle = {
-	transform: 'translate(-5px, -5px)'
-};
 
 var DisplayPane = React.createClass({
 
@@ -31,13 +28,12 @@ var DisplayPane = React.createClass({
 	},
 
 	componentDidMount: function() {
-		size = parseInt(domUtils.getStyle(this.getDOMNode(), 'width'));
+		size = parseInt(domUtils.getStyle(this.getDOMNode(), 'width'))+2;
 		var canvas = React.findDOMNode(this.refs.shadePaneCanvas);
 		canvas.width = size;
 		canvas.height = size;
 		var context = canvas.getContext('2d');
     	this.paint(context);
-    	this.moveMarker();
     	lastHue = this.props.hue;
 
     	window.addEventListener('optimizedResize', this.resize)
@@ -55,10 +51,6 @@ var DisplayPane = React.createClass({
 			var context = React.findDOMNode(this.refs.shadePaneCanvas).getContext('2d');
     		this.paint(context);
 		}
-
-		if (prevProps.saturation != this.props.saturation || prevProps.lightness != this.props.lightness) {
-			//this.moveMarker();
-		}
 	},
 
 	componentWillUnmount: function() {
@@ -72,7 +64,7 @@ var DisplayPane = React.createClass({
 	},
 
 	resize: function() {
-		var nSize = parseInt(domUtils.getStyle(this.getDOMNode(), 'width'));
+		var nSize = parseInt(domUtils.getStyle(this.getDOMNode(), 'width'))+1;
 		if (size != nSize) {
 			size = nSize;
 			var canvas = React.findDOMNode(this.refs.shadePaneCanvas);
@@ -80,7 +72,6 @@ var DisplayPane = React.createClass({
 			canvas.height = size;
 			var context = canvas.getContext('2d');
 	    	this.paint(context);
-	    	this.moveMarker();
 		}
 	},
 
@@ -124,43 +115,20 @@ var DisplayPane = React.createClass({
 	    }
 	},
 
-	moveMarker: function() {
-		var marker = React.findDOMNode(this.refs.shadePaneMarker);
-		var r = size/2;
-		var x = this.props.lightness * size;
-		var y = this.props.saturation * size;
-
-		var c1 = y*y - 2*y*r + r*r;
-		var x1 = (2*r - Math.sqrt(4*r*r-4*c1))/2;
-		var x2 = (2*r + Math.sqrt(4*r*r-4*c1))/2;
-
-		var c2 = ( x*x - 2*x*r + r*r);
-		var y1 = (2*r - Math.sqrt(4*r*r-4*c2))/2;
-		var y2 = (2*r + Math.sqrt(4*r*r-4*c2))/2;
-
-		marker.style.left = this.props.lightness*(x2-x1) + x1 + padding + 'px';
-		marker.style.top = this.props.saturation*(y2-y1) + y1 + padding + 'px';
-	},
-
 	render: function() {
 		return (
 			<div
 				className="shade-pane"
 				style={wrapperStyle} 
 				onMouseMove={this._handleMouseMove}>
-				<canvas 
-					id="shade" 
-					className="shade-pane__canvas" 
-					ref="shadePaneCanvas"
-					onMouseDown={this._handleMouseDown}
-					onMouseLeave={this._handeMouseLeave} >
-				</canvas>
-				<div
-					className="shade-pane__marker"
-					style={markerStyle} 
-					ref="shadePaneMarker"
-					onMouseDown={this._handleMouseDown}
-					onMouseMove={this._handleMouseMove} >
+				<div className="shade-pane__window">
+					<canvas 
+						id="shade" 
+						className="shade-pane__canvas" 
+						ref="shadePaneCanvas"
+						onMouseDown={this._handleMouseDown}
+						onMouseLeave={this._handeMouseLeave} >
+					</canvas>
 				</div>
 			</div>
 		);
@@ -191,7 +159,6 @@ var DisplayPane = React.createClass({
 	},
 
 	_setShade: function(event) {
-		var marker = React.findDOMNode(this.refs.shadePaneMarker);
 		var pos = domUtils.offset(React.findDOMNode(this.refs.shadePaneCanvas)),
 			x = event.pageX - pos.left,
 			y = event.pageY - pos.top,
@@ -208,8 +175,6 @@ var DisplayPane = React.createClass({
 			x = r + sign*(r/norm);
 			y = r + sign*(r*m/norm);
 		}
-		marker.style.left = x+10+'px';
-		marker.style.top = y+10+'px';
 
 		var c1 = y*y - 2*y*r + r*r,
 			x1 = (2*r - Math.sqrt(4*r*r-4*c1))/2,

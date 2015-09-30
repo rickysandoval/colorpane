@@ -17,8 +17,26 @@ var HexInput = React.createClass({
 		return (
 			<input 
 				value={this.state.value}
+				onKeyDown={this._handleKeyDown}
+				onChange={this._onChange}
 			/>
 		);
+	},
+	//comment
+	_handleKeyDown: function(event) {
+		if (event.keyCode === 13) {
+			this._save();
+		}
+	},
+
+	_onChange: function(event) {
+		this.setState({
+			value: event.target.value
+		});
+	},
+
+	_save: function() {
+		this.props.onSave(this.state.value);
 	}
 });
 

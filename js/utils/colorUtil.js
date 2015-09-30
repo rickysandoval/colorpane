@@ -17,45 +17,47 @@ var utils = {
 	    var r = 255 * (rgb[0] + m);
 	    var g = 255 * (rgb[1] + m);
 	    var b = 255 * (rgb[2] + m);
-
-	    return [+r.toFixed(2), +g.toFixed(2), +b.toFixed(2)];
+	    return [+r.toPrecision(4), +g.toPrecision(4), +b.toPrecision(4)];
 	},
 
 	rgb2hsl: function(r,g,b) {
-		var r1 = r/255,
-			g1 = g/255,
-			b1 = b/255;
+		var r1 = (r/255),
+			g1 = (g/255),
+			b1 = (b/255);
+
 		var cMax = Math.max(r1,g1,b1),
 			cMin = Math.min(r1,g1,b1),
 			delta = cMax - cMin;
-
 		var H,S,L;
 
-		switch (delta) {
-			case (0):
-				H = 0;
-				break;
-			case (r1):
-				H = 60 * (((g1-b1)/delta) % 6);
-				break;
-			case (g1):
-				H = 60 * (((b1-r1)/delta) + 2);
-				break;
-			case (b1):
-				H = 60 * (((r1-g1)/delta) + 4);
-				break;
+		if (delta === 0) {
+			H = 0;
+		} else {
+			switch (cMax) {
+				case (r1):
+					H = 60 * (((g1-b1)/delta) % 6);
+					break;
+				case (g1):
+					H = 60 * (((b1-r1)/delta) + 2);
+					break;
+				case (b1):
+					H = 60 * (((r1-g1)/delta) + 4);
+					break;
+			}
 		}
+	
 		if (H<0) {
 			H = 360 - Math.abs(H);
 		}
-		L = (cMax - cMin)/2;
+
+		L = (cMax + cMin)/2;
 
 		if (delta == 0) {
 			S = 0;
 		} else {
 			S = delta/(1-Math.abs(2*L-1));
 		}
-		return [+H.toFixed(0),+S.toFixed(2),+L.toFixed(2)]
+		return [+H.toPrecision(4),+S.toPrecision(4),+L.toPrecision(4)]
 	},
 
 	hsl2rgb: function(h,s,l) {
@@ -81,12 +83,18 @@ var utils = {
 	        b = hue2rgb(p, q, h - 1/3);
 	    }
 
-	    return [+(r * 255).toFixed(2), +(g * 255).toFixed(2), +(b * 255).toFixed(2)];
+	    return [+(r * 255).toPrecision(4), +(g * 255).toPrecision(4), +(b * 255).toPrecision(4)];
 	},
 
 	hsl2hex: function(h,s,l) {
 		var rgb = this.hsl2rgb(h,s,l);
 		return '' + componentToHex(Math.floor(rgb[0])) + componentToHex(Math.floor(rgb[1])) + componentToHex(Math.floor(rgb[2]));
+	},
+
+	hex2hsl: function(hex) {
+		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+		return result ? this.rgb2hsl(parseInt(result[1], 16).toPrecision(4), parseInt(result[2], 16).toPrecision(4), parseInt(result[3], 16)).toPrecision(4) : null;
 	}
 
 }

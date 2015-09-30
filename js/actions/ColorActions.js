@@ -33,6 +33,27 @@ var ColorActions = {
       actionType: ColorConstants.LIGHTNESS_UPDATE,
       lightness: light
     });
+  },
+
+  updateHex: function(hex) {
+    AppDispatcher.dispatch({
+      actionType: ColorConstants.HEX_UPDATE,
+      hex: hex
+    });
+  },
+
+  updateRgb: function(rgb) {
+    AppDispatcher.dispatch({
+      actionType: ColorConstants.RGB_UPDATE,
+      rgb: rgb
+    });
+  },
+
+  updateHsl: function(hsl) {
+    AppDispatcher.dispatch({
+      actionType: ColorConstants.HSL_UPDATE,
+      hsl: hsl
+    });
   }
 
 };

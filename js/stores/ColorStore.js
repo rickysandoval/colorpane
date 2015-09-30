@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var ColorConstants = require('../constants/ColorConstants');
 var assign = require('object-assign');
+var colorUtils = require('../utils/colorUtil');
 
 var CHANGE_EVENT = 'change';
 
@@ -66,18 +67,50 @@ AppDispatcher.register(function(action) {
         updateHue(+hue);
         ColorStore.emitChange();
       }
+      break;
     case ColorConstants.SATURATION_UPDATE:
       sat = action.saturation;
       if (validSaturation(+sat)){
         updateSaturation(+sat);
         ColorStore.emitChange();
       }
+      break;
     case ColorConstants.LIGHTNESS_UPDATE:
       light = action.lightness;
       if (validLightness(+light)){
         updateLightness(+light);
         ColorStore.emitChange();
       }
+      break;
+    case ColorConstants.HEX_UPDATE:
+      var hex = action.hex;
+      var hsl = colorUtils.hex2hsl(hex);
+      if (hsl) {
+        updateHue(hsl[0]);
+        updateSaturation(hsl[1]);
+        updateLightness(hsl[2]);
+        ColorStore.emitChange();
+      }
+      break;
+    case ColorConstants.RGB_UPDATE:
+      var rgb = action.rgb;
+      var hsl = colorUtils.rgb2hsl(rgb[0], rgb[1], rgb[2]);
+      if (hsl) {
+        updateHue(hsl[0]);
+        updateSaturation(hsl[1]);
+        updateLightness(hsl[2]);
+        ColorStore.emitChange();
+      }
+      break;
+    case ColorConstants.HSL_UPDATE:
+      var hsl = action.hsl;
+      if (hsl) {
+        updateHue(hsl[0]);
+        updateSaturation(hsl[1]);
+        updateLightness(hsl[2]);
+        ColorStore.emitChange();
+      }
+      break;
     default:
       // no op
   }

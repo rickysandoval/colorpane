@@ -7,7 +7,6 @@
 }
 
 .color-input {
-	margin-right: 2.5*$unit;
 	margin-bottom: 1.5*$unit;
 }
 .color-input__label {
@@ -21,4 +20,10 @@
 }
 .editing .color-input__display {
 	display: none;
+}
+
+.rgb-input, .hsl-input {
+	input {
+		width: 33%;
+	}
 }

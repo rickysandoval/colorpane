@@ -3,12 +3,3 @@
 @import 'base';
 
 @import 'components/components-main';
-
-.shade-pane__marker {
-	height: 10px; 
-	width: 10px;
-	position: absolute;
-	border-radius: 10px;
-	background: black;
-	cursor: pointer;
-}

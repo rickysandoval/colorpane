@@ -2,11 +2,9 @@ var React = require('react');
 var classNames = require('classnames');
 
 var ColorActions = require('./../../actions/ColorActions');
-var colorUtils = require('./../../utils/colorUtil');
-var HexInput = require('./HexInput.react');
+var HslInput = require('./HslInput.react');
 
-
-var HexDisplay = React.createClass({
+var HslDisplay = React.createClass({
 
 	propTypes: {
 		color: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
@@ -19,25 +17,26 @@ var HexDisplay = React.createClass({
 	},
 
 	render: function() {
-		var hex = colorUtils.hsl2hex(this.props.color[0], this.props.color[1], this.props.color[2]);
+		var hsl = this.props.color
 		var input;
 
 		if (this.state.isEditing) {
-			input = 
-				<HexInput
+			input =
+				<HslInput
 					onSave={this._onSave}
-					hex={hex}
+					h={hsl[0]}
+					s={hsl[1]}
+					l={hsl[2]}
 				/>;
 		}
 		//
 		return (
-			<div
-				className={classNames('color-input', {
-					'editing': this.state.isEditing
+			<div className={classNames('color-input', {
+				'editing': this.state.isEditing
 				})}>
 				<div onDoubleClick={this._onDoubleClick}>
-					<div className="color-input__label">Hex</div>
-					<div className="color-input__display">#{ hex }</div>
+					<div className="color-input__label">HSL</div>
+					<div className="color-input__display">{hsl[0]}, {hsl[1]}, {hsl[2]}</div>
 				</div>
 				{input}
 			</div>
@@ -48,11 +47,13 @@ var HexDisplay = React.createClass({
 		this.setState({isEditing: true});
 	},
 
-	_onSave: function(hex) {
-		ColorActions.updateHex(hex);
-		this.setState({isEditing: false});
+	_onSave: function(hsl, keepOpen) {
+		ColorActions.updateHsl(hsl);
+		if (!keepOpen){
+			this.setState({isEditing: false});
+		}
 	}
 
 });
 
-module.exports = HexDisplay;
+module.exports = HslDisplay;

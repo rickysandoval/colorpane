@@ -111,7 +111,7 @@ var cssTask = function(options) {
 gulp.task('default', function() {
 	browserSync.init({
 		server: './build',
-		files: ['js/**']
+		files: ['./build/*.js', './build/index.html'],
 	});
 
 	browserifyTask({

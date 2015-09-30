@@ -1,6 +1,6 @@
 var React = require('react');
 var utils = require('../../utils/colorUtil');
-var HsvDisplay = require('../controls/HsvDisplay.react');
+var HslDisplay = require('../controls/HslDisplay.react');
 var RgbDisplay= require('../controls/RgbDisplay.react');
 var HexDisplay = require('../controls/HexDisplay.react');
 
@@ -23,7 +23,7 @@ var DisplayPane = React.createClass({
 		return (
 			<div className="picker-display" style={style}>
 			 	<div className="picker-inputs">
-					<HsvDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
+					<HslDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
 					<RgbDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
 					<HexDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
 				</div>
