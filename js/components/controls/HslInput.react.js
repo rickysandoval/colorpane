@@ -27,7 +27,6 @@ var HslInput = React.createClass({
 					value={this.state.h}
 					onKeyDown={this._handleKeyDown}
 					onChange={this._onChange}
-					onBlur={this._handleBlur}
 					ref="hInput"
 				/>
 				<input 
@@ -38,7 +37,6 @@ var HslInput = React.createClass({
 					value={this.state.s}
 					onKeyDown={this._handleKeyDown}
 					onChange={this._onChange}
-					onBlur={this._handleBlur}
 					ref="sInput"
 				/>
 				<input 
@@ -49,7 +47,6 @@ var HslInput = React.createClass({
 					value={this.state.l}
 					onKeyDown={this._handleKeyDown}
 					onChange={this._onChange}
-					onBlur={this._handleBlur}
 					ref="lInput"
 				/>
 			</div>
@@ -76,11 +73,6 @@ var HslInput = React.createClass({
 			Math.min(Math.max(this.state.s, 0), 1),
 			Math.min(Math.max(this.state.l, 0), 1)
 		], keepOpen);
-	},
-
-	_handleBlur: function() {
-		this._onChange();
-		this._save();
 	}
 });
 

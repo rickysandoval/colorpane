@@ -17,7 +17,15 @@ var wrapperStyle = {
 	boxSizing: 'content-box',
 	borderRadius: '50%'
 };
-var mouseDown = 0;
+var mouseDown = false;
+var mouseDownListener = function(event) {
+	if (event.target.className.indexOf('color-pane__canvas') >= 0) {
+		mouseDown = true;
+	}
+};
+var mosueUpListener = function(event) {
+	mouseDown = false;
+};
 
 var DisplayPane = React.createClass({
 
@@ -37,12 +45,8 @@ var DisplayPane = React.createClass({
     	lastHue = this.props.hue;
 
     	window.addEventListener('optimizedResize', this.resize)
-    	document.body.addEventListener('mousedown', function(){
-    		++mouseDown;
-    	});
-    	document.body.addEventListener('mouseup', function(){
-    		--mouseDown;
-    	});
+    	document.body.addEventListener('mousedown', mouseDownListener);
+    	document.body.addEventListener('mouseup', mosueUpListener);
 	},
 
 	componentDidUpdate: function(prevProps) {
@@ -55,12 +59,8 @@ var DisplayPane = React.createClass({
 
 	componentWillUnmount: function() {
 		window.removeEventListener('optimizedResize', this.resize);
-		document.removeEventListener('mousedown', function(){
-    		++mouseDown;
-    	});
-    	document.removeEventListener('mouseup', function(){
-    		--mouseDown;
-    	});
+		document.removeEventListener('mousedown', mouseDownListener);
+    	document.removeEventListener('mouseup', mosueUpListener);
 	},
 
 	resize: function() {

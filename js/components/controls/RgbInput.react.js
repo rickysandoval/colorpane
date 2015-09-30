@@ -27,7 +27,6 @@ var RgbInput = React.createClass({
 					value={this.state.r}
 					onKeyDown={this._handleKeyDown}
 					onChange={this._onChange}
-					onBlur={this._onChange}
 					ref="rInput"
 				/>
 				<input 
@@ -37,7 +36,6 @@ var RgbInput = React.createClass({
 					value={this.state.g}
 					onKeyDown={this._handleKeyDown}
 					onChange={this._onChange}
-					onBlue={this._onChange}
 					ref="gInput"
 				/>
 				<input 
@@ -47,7 +45,6 @@ var RgbInput = React.createClass({
 					value={this.state.b}
 					onKeyDown={this._handleKeyDown}
 					onChange={this._onChange}
-					onBlue={this._onChange}
 					ref="bInput"
 				/>
 			</div>
@@ -74,11 +71,6 @@ var RgbInput = React.createClass({
 			Math.min(Math.max(this.state.g || 0, 0), 255),
 			Math.min(Math.max(this.state.b || 0, 0), 255)
 		], keepOpen);
-	},
-
-	_handleBlur: function() {
-		this._onChange();
-		this._save();
 	}
 });
 

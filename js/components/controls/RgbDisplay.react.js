@@ -50,7 +50,6 @@ var RgbDisplay = React.createClass({
 
 	_onSave: function(rgb, keepOpen) {
 		ColorActions.updateRgb(rgb);
-		console.log(rgb);
 		if (!keepOpen){
 			this.setState({isEditing: false});
 		}
