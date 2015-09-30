@@ -16,8 +16,10 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 45%;
+	background: white;
 }
 .shade-pane__canvas {
 	margin-left: -1px;
 	margin-top: -1px;
+	opacity: .95;
 }
