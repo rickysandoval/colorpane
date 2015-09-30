@@ -1,4 +1,5 @@
 var React = require('react');
+var colorUtil = require('../../utils/colorUtil');
 
 var HexInput = React.createClass({
 
@@ -32,11 +33,19 @@ var HexInput = React.createClass({
 	_onChange: function(event) {
 		this.setState({
 			value: event.target.value
-		});
+		}, this._changeCallback);
+	},
+
+	_changeCallback: function(){
+		if (colorUtil.hex2hsl(this.state.value)){
+			this.props.onSave(this.state.value, true);
+		}
 	},
 
 	_save: function() {
-		this.props.onSave(this.state.value);
+		if (colorUtil.hex2hsl(this.state.value)){
+			this.props.onSave(this.state.value);
+		}
 	}
 });
 

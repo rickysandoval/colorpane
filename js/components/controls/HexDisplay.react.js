@@ -48,9 +48,11 @@ var HexDisplay = React.createClass({
 		this.setState({isEditing: true});
 	},
 
-	_onSave: function(hex) {
+	_onSave: function(hex, keepOpen) {
 		ColorActions.updateHex(hex);
-		this.setState({isEditing: false});
+		if (!keepOpen){
+			this.setState({isEditing: false});
+		}
 	}
 
 });

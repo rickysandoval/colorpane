@@ -94,7 +94,7 @@ var utils = {
 	hex2hsl: function(hex) {
 		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
-		return result ? this.rgb2hsl(parseInt(result[1], 16).toPrecision(4), parseInt(result[2], 16).toPrecision(4), parseInt(result[3], 16)).toPrecision(4) : null;
+		return result ? this.rgb2hsl(parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)) : null;
 	}
 
 }
