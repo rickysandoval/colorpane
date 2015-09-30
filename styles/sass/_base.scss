@@ -26,16 +26,21 @@ input {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: stretch;
-	padding: $unit;
 }
-
-.picker-controls, .picker-display {
-	min-width: 300px;
+.picker-controls {
+	width: 25*$unit;
+	padding: 2.5*$unit 1.5*$unit;
+}
+.picker-wheel {
 	overflow: hidden;
 	position: relative;
 }
-.picker-controls {
+.picker-wheel {
 	width: 33%;
-	max-width: 600px;
 	padding: 2.5*$unit;
+}
+.picker-display {
+	height: auto;
+	padding: 2.5*$unit 1.5*$unit;
+	width: calc(67% - 250px);
 }

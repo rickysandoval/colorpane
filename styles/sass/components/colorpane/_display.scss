@@ -1,6 +1,22 @@
-.picker-display {
-	flex-grow: 1;
-	height: auto;
-	width: auto;
-	padding: 1.5*$unit;
+.picker-display__inner {
+	height: 100%;
+	padding: $unit;
+}
+.sample-header {
+	font: $font-h2;
+	padding: $unit .5*$unit;
+	border-bottom: 2px solid rgba(255,255,255,.85);
+}
+.sample-paragraph {
+	font: $font-large;
+	padding: $unit .5*$unit;
+}
+.picker-display__dark {
+	.sample-header {
+		background: rgba(255,255,255,.85);
+		border-bottom: none;
+	}
+	.sample-paragraph {
+		color: white;
+	}
 }

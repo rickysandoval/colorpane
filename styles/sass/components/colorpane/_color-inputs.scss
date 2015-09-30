@@ -1,13 +1,14 @@
 .picker-inputs {
 	padding: $unit;
-	background: rgba(255,255,255,.75);
+	height: 25rem;
+}
+.picker-inputs__inner {
+	height: 100%;;
+	padding: $unit;
+	background: rgba(255,255,255,.85);
 	display: flex;
 	flex-direction: column;
-	width: 25rem;
-}
-
-.color-input {
-	margin-bottom: 1.5*$unit;
+	justify-content: space-between;
 }
 .color-input__label {
 	font: $font-xlarge;

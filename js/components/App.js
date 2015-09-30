@@ -7,6 +7,7 @@ var Header = require('./Header.react');
 var ColorPane = require('./colorpane/ColorPane.react');
 var ShadePane = require('./colorpane/ShadePane.react');
 var DisplayPane = require('./displaypane/DisplayPane.react');
+var ControlPane = require('./controls/ControlPane.react');
 
 function getState() {
 	return {
@@ -36,12 +37,21 @@ var App = React.createClass({
 				<Header/>
 				<main className="site-main">
 					<div className="picker-controls">
-						<ColorPane />
-						<ShadePane
+						<ControlPane
 							hue={this.state.hue}
 							saturation={this.state.saturation}
 							lightness={this.state.lightness}
 						/>
+					</div>
+					<div className="picker-wheel">
+						<div className="picker-wheel__wrapper">
+							<ColorPane />
+							<ShadePane
+								hue={this.state.hue}
+								saturation={this.state.saturation}
+								lightness={this.state.lightness}
+							/>
+						</div>
 					</div>
 					<DisplayPane 
 						hue={this.state.hue}

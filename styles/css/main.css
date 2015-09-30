@@ -17,12 +17,12 @@ header, main {
 	align-items: stretch;
 }
 
-.picker-controls, .picker-display {
+.picker-wheel, .picker-display {
 	min-width: 300px;
 	overflow: hidden;
 	position: relative;
 }
-.picker-controls {
+.picker-wheel {
 	background: black;
 	width: 33%;
 	max-width: 600px;

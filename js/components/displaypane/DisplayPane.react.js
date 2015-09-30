@@ -1,10 +1,7 @@
 var React = require('react');
-var utils = require('../../utils/colorUtil');
-var HslDisplay = require('../controls/HslDisplay.react');
-var RgbDisplay= require('../controls/RgbDisplay.react');
-var HexDisplay = require('../controls/HexDisplay.react');
-
-var s = 250;
+var classNames = require('classnames');
+var colorUtil = require('../../utils/colorUtil');
+var DisplayText = require('./DisplayText.react');
 
 var style = {
 	backgroundColor: ''
@@ -19,13 +16,14 @@ var DisplayPane = React.createClass({
 	},
 
 	render: function() {
-		style.backgroundColor = '#' + utils.hsl2hex(this.props.hue, this.props.saturation, this.props.lightness);
+		style.backgroundColor = '#' + colorUtil.hsl2hex(this.props.hue, this.props.saturation, this.props.lightness);
 		return (
-			<div className="picker-display" style={style}>
-			 	<div className="picker-inputs">
-					<HslDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
-					<RgbDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
-					<HexDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
+			<div 
+				className={classNames("picker-display",{
+					'picker-display__dark' : this.props.lightness <= .45
+				})} >
+				<div className="picker-display__inner" style={style}>
+					<DisplayText color={[this.props.hue, this.props.saturation, this.props.lightness]} />
 				</div>
 			</div>
 		);
