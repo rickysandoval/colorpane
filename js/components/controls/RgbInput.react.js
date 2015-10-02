@@ -17,6 +17,16 @@ var RgbInput = React.createClass({
 		};
 	},
 
+	componentDidUpdate: function(prevProps) {
+		if (prevProps.r != this.props.r || prevProps.g != this.props.g || prevProps.b != this.props.b) {
+			this.setState({
+				r: this.props.r,
+				g: this.props.g,
+				b: this.props.b
+			});
+		}
+	},
+
 	render: function() {
 		return (
 			<div className="rgb-input">

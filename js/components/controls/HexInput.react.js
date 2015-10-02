@@ -5,13 +5,21 @@ var HexInput = React.createClass({
 
 	propTypes: {
 		onSave: React.PropTypes.func.isRequired,
-		hex: React.PropTypes.string
+		hex: React.PropTypes.string.isRequired
 	},
 
 	getInitialState: function() {
 		return {
 			value: this.props.hex || ''
 		};
+	},
+
+	componentDidUpdate: function(prevProps) {
+		if (prevProps.hex != this.props.hex) {
+			this.setState({
+				value: this.props.hex
+			});
+		}
 	},
 
 	render: function() {

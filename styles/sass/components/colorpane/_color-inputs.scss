@@ -1,7 +1,8 @@
 .picker-inputs {
 	padding: $unit;
-	height: 25rem;
+	height: 30rem;
 }
+
 .picker-inputs__inner {
 	height: 100%;;
 	padding: $unit;
@@ -10,15 +11,18 @@
 	flex-direction: column;
 	justify-content: space-between;
 }
+
 .color-input__label {
 	font: $font-xlarge;
 	font-weight: $fw-light;
 }
+
 .color-input__display {
 	margin: 2px 0;
 	font: $font-large;
 	font-weight: $fw-light;
 }
+
 .editing .color-input__display {
 	display: none;
 }
@@ -26,5 +30,25 @@
 .rgb-input, .hsl-input {
 	input {
 		width: 33%;
+	}
+}
+
+.transparency-input {
+	margin-bottom: 2.8rem;
+	input[type="checkbox"]{
+		margin-left: 5px;
+		display: inline-block;
+		verical-align: middle;
+	}
+	.color-input__display {
+		display: none;
+	}
+	&.enabled {
+		margin-bottom: 0;
+	}
+	&:not(.editing).enabled {
+		.color-input__display {
+			display: block;
+		}
 	}
 }

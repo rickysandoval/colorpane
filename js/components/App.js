@@ -13,7 +13,9 @@ function getState() {
 	return {
 		saturation: ColorStore.getSaturation(),
 		hue: ColorStore.getHue(),
-		lightness: ColorStore.getLightness()
+		lightness: ColorStore.getLightness(),
+		alpha: ColorStore.getAlpha(),
+		alphaEnabled: ColorStore.getAlphaEnabled()
 	};
 }
 
@@ -41,6 +43,8 @@ var App = React.createClass({
 							hue={this.state.hue}
 							saturation={this.state.saturation}
 							lightness={this.state.lightness}
+							alpha={this.state.alpha}
+							alphaEnabled={this.state.alphaEnabled}
 						/>
 					</div>
 					<div className="picker-wheel">

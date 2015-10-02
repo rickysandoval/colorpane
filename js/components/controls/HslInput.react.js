@@ -17,6 +17,16 @@ var HslInput = React.createClass({
 		};
 	},
 
+	componentDidUpdate: function(prevProps) {
+		if (prevProps.h != this.props.h || prevProps.s != this.props.s || prevProps.l != this.props.l) {
+			this.setState({
+				h: this.props.h,
+				s: this.props.s,
+				l: this.props.l
+			});
+		}
+	},
+
 	render: function() {
 		return (
 			<div className="hsl-input">

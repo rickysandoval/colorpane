@@ -3,17 +3,6 @@ var ColorConstants = require('../constants/ColorConstants');
 
 var ColorActions = {
 
-  /**
-   * @param  {string} text
-   */
-  update: function(color) {
-  	console.log('update this');
-    AppDispatcher.dispatch({
-      actionType: ColorConstants.COLOR_UPDATE,
-      color: color
-    });
-  },
-
   updateSaturation: function(sat) {
     AppDispatcher.dispatch({
       actionType: ColorConstants.SATURATION_UPDATE,
@@ -32,6 +21,20 @@ var ColorActions = {
     AppDispatcher.dispatch({
       actionType: ColorConstants.LIGHTNESS_UPDATE,
       lightness: light
+    });
+  },
+
+  updateAlpha: function(alpha) {
+    AppDispatcher.dispatch({
+      actionType: ColorConstants.ALPHA_UPDATE,
+      alpha: alpha
+    });
+  },
+
+  updateAlphaEnabled: function(enabled) {
+    AppDispatcher.dispatch({
+      actionType: ColorConstants.ALPHA_UPDATE,
+      alphaEnabled: enabled
     });
   },
 

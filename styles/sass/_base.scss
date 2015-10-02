@@ -28,7 +28,7 @@ input {
 	align-items: stretch;
 }
 .picker-controls {
-	width: 25*$unit;
+	width: 27.5*$unit;
 	padding: 2.5*$unit 1.5*$unit;
 }
 .picker-wheel {
@@ -42,5 +42,5 @@ input {
 .picker-display {
 	height: auto;
 	padding: 2.5*$unit 1.5*$unit;
-	width: calc(67% - 250px);
+	width: calc(67% - 275px);
 }

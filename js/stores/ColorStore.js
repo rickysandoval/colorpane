@@ -8,7 +8,9 @@ var CHANGE_EVENT = 'change';
 
 var _hue = Math.floor(Math.random()*360),
     _saturation = 1,
-    _lightness = .5;
+    _lightness = .5,
+    _alpha = 1,
+    _alphaEnabled = false;
 
 
 function updateHue(hue) {
@@ -23,6 +25,14 @@ function updateLightness(light) {
   _lightness = light;
 }
 
+function updateAlpha(alpha) {
+  _alpha = alpha;
+}
+
+function updateAlphaEnabled(enabled) {
+  _alphaEnabled = enabled;
+}
+
 var ColorStore = assign({}, EventEmitter.prototype, {
 
   getHue: function() {
@@ -35,6 +45,14 @@ var ColorStore = assign({}, EventEmitter.prototype, {
 
   getLightness: function() {
     return _lightness;
+  },
+
+  getAlpha: function() {
+    return _alpha;
+  },
+
+  getAlphaEnabled: function() {
+    return _alphaEnabled;
   },
 
   emitChange: function() {
@@ -62,26 +80,41 @@ AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
     case ColorConstants.HUE_UPDATE:
-      hue = action.hue;
+      var hue = action.hue;
       if (validHue(+hue)){
         updateHue(+hue);
         ColorStore.emitChange();
       }
       break;
     case ColorConstants.SATURATION_UPDATE:
-      sat = action.saturation;
+      var sat = action.saturation;
       if (validSaturation(+sat)){
         updateSaturation(+sat);
         ColorStore.emitChange();
       }
       break;
     case ColorConstants.LIGHTNESS_UPDATE:
-      light = action.lightness;
+      var light = action.lightness;
       if (validLightness(+light)){
         updateLightness(+light);
         ColorStore.emitChange();
       }
       break;
+    case ColorConstants.ALPHA_UPDATE:
+      var alpha = action.alpha;
+      if (validAlpha(+alpha)){
+        updateAlpha(+alpha);
+        ColorStore.emitChange();
+      }
+      break
+    case ColorConstants.ALPHA_ENABLED_UPDATE:
+      var enabled = action.alphaEnabled;
+      if (enabled){
+        updateAlpha(true);
+      } else {
+        updateAlpha(false);
+      }
+      break
     case ColorConstants.HEX_UPDATE:
       var hex = action.hex;
       var hsl = colorUtils.hex2hsl(hex);
@@ -134,6 +167,14 @@ function validSaturation(sat) {
 
 function validLightness(light) {
   if (isNaN(light) || light < 0 || light > 1) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function validAlpha(alpha) {
+  if (isNaN(alpha) || alpha < 0 || alpha > 1) {
     return false;
   } else {
     return true;
