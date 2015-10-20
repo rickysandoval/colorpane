@@ -63,3 +63,25 @@
 		}
 	}
 }
+
+.color-input__copy-button {
+	margin-left: 5px;
+	cursor: pointer;
+	img {
+		width: 15px;
+	}
+}
+.color-input__copy-text {
+	font: $font-small;
+	margin-left: 10px;
+	color: $light-black;
+	display: none;
+}
+.copying .color-input__copy-text {
+	display: inline-block;
+	input {
+		border: none;
+		background: transparent;
+		outline: none;
+	}
+}

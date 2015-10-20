@@ -14,7 +14,8 @@ var HexDisplay = React.createClass({
 
 	getInitialState: function() {
 		return {
-			isEditing: false
+			isEditing: false,
+			isCopying: false
 		};
 	},
 
@@ -33,15 +34,51 @@ var HexDisplay = React.createClass({
 		return (
 			<div
 				className={classNames('color-input', {
-					'editing': this.state.isEditing
+					'editing': this.state.isEditing,
+					'copying': this.state.isCopying
 				})}>
-				<div onDoubleClick={this._onDoubleClick}>
-					<div className="color-input__label">Hex</div>
-					<div className="color-input__display">#{ hex }</div>
+				<div>
+					<div className="color-input__label">Hex
+						<span className="color-input__copy-button" onClick={this._openCopy}><img src="http://rickysandoval.github.io/colorpane/img/copy.png"/></span>
+						<span 
+							className="color-input__copy-text" >
+							<input
+								value={'#' + hex} 
+								onBlur={this._closeCopy}
+								ref="copyText" readOnly></input>
+						</span>
+					</div>
+
+					<div 
+						className="color-input__display"
+						onDoubleClick={this._openEdit}>#{ hex }</div>
 				</div>
 				{input}
 			</div>
 		);
+	},
+
+	_closeCopy: function() {
+		this.setState({isCopying: false});
+	},
+
+	_openCopy: function() {
+		console.log('open copy');
+		var input = React.findDOMNode(this.refs.copyText);
+		if (!this.state.isCopying) {
+			this.setState({isCopying: true});
+			setTimeout(function(){
+				input.focus();
+				input.select();
+			});
+		}
+		setTimeout(function(){
+			input.select();
+		});
+	},
+
+	_openEdit: function() {
+		this.setState({isEditing: true});
 	},
 
 	_onDoubleClick: function() {

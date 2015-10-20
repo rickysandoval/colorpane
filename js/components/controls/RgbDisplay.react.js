@@ -16,7 +16,8 @@ var RgbDisplay = React.createClass({
 
 	getInitialState: function() {
 		return {
-			isEditing: false
+			isEditing: false,
+			isCopying: false
 		};
 	},
 
@@ -38,11 +39,24 @@ var RgbDisplay = React.createClass({
 		//
 		return (
 			<div className={classNames('color-input', {
-				'editing': this.state.isEditing
+				'editing': this.state.isEditing,
+				'copying': this.state.isCopying
 				})}>
-				<div onDoubleClick={this._onDoubleClick}>
-					<div className="color-input__label">RGB{this.props.alphaEnabled ? 'a' : ''}</div>
-					<div className="color-input__display">
+				<div>
+					<div className="color-input__label">
+						RGB{this.props.alphaEnabled ? 'a' : ''}
+						<span className="color-input__copy-button" onClick={this._openCopy}><img src="http://rickysandoval.github.io/colorpane/img/copy.png"/></span>
+						<span 
+							className="color-input__copy-text" >
+							<input
+								value={this._printRgb(rgb)} 
+								onBlur={this._closeCopy}
+								ref="copyText" readOnly></input>
+						</span>
+					</div>
+					<div 
+						className="color-input__display"
+						onDoubleClick={this._openEdit} >
 						{gUtil.round(rgb[0])}, {gUtil.round(rgb[1])}, {gUtil.round(rgb[2])}{this.props.alphaEnabled ? ', '+this.props.alpha : ''}
 					</div>
 				</div>
@@ -51,8 +65,36 @@ var RgbDisplay = React.createClass({
 		);
 	},
 
-	_onDoubleClick: function() {
+	_closeCopy: function() {
+		this.setState({isCopying: false});
+	},
+
+	_openCopy: function() {
+		var input = React.findDOMNode(this.refs.copyText);
+		if (!this.state.isCopying) {
+			this.setState({isCopying: true});
+			setTimeout(function(){
+				input.focus();
+				input.select();
+			});
+		}
+		setTimeout(function(){
+			input.select();
+		});
+	},
+
+	_openEdit: function() {
 		this.setState({isEditing: true});
+	},
+
+	_printRgb: function(rgb) {
+		var text = 'rgb' + 
+					(this.props.alphaEnabled ? 'a' : '') + 
+					'(' + gUtil.round(rgb[0]) + ',' +
+					gUtil.round(rgb[1]) + ',' +
+					gUtil.round(rgb[2]) + 
+					(this.props.alphaEnabled ? (', ' +this.props.alpha) : '') + ')';
+		return text;
 	},
 
 	_onSave: function(rgb, keepOpen) {
