@@ -1,6 +1,20 @@
+.picker-display {
+	position: relative;
+}
 .picker-display__inner {
 	height: 100%;
+	width: auto;
 	padding: $unit;
+	position: relative;
+}
+.picker-display__background-image {
+	position: absolute;
+	bottom: 0;
+	padding: 2.5*$unit 1.5*$unit;
+	img {
+		width: calc(100% - 50px);
+		max-width: 100%;
+	}
 }
 .sample-header {
 	font: $font-h2;

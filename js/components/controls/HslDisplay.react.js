@@ -3,6 +3,7 @@ var classNames = require('classnames');
 
 var ColorActions = require('./../../actions/ColorActions');
 var HslInput = require('./HslInput.react');
+var gUtil = require('./../../utils/generalUtil');
 
 var HslDisplay = React.createClass({
 
@@ -24,9 +25,9 @@ var HslDisplay = React.createClass({
 			input =
 				<HslInput
 					onSave={this._onSave}
-					h={hsl[0]}
-					s={hsl[1]}
-					l={hsl[2]}
+					h={gUtil.round(hsl[0])}
+					s={gUtil.round(hsl[1])}
+					l={gUtil.round(hsl[2])}
 				/>;
 		}
 		//
@@ -36,7 +37,7 @@ var HslDisplay = React.createClass({
 				})}>
 				<div onDoubleClick={this._onDoubleClick}>
 					<div className="color-input__label">HSL</div>
-					<div className="color-input__display">{hsl[0]}, {hsl[1]}, {hsl[2]}</div>
+					<div className="color-input__display">{gUtil.round(hsl[0])}, {gUtil.round(hsl[1])}, {gUtil.round(hsl[2])}</div>
 				</div>
 				{input}
 			</div>

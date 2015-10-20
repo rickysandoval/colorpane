@@ -61,6 +61,8 @@ var App = React.createClass({
 						hue={this.state.hue}
 						saturation={this.state.saturation}
 						lightness={this.state.lightness}
+						alpha={this.state.alpha}
+						alphaEnabled={this.state.alphaEnabled}
 					/>
 				</main>
 			</div>

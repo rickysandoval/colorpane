@@ -29,7 +29,15 @@
 
 .rgb-input, .hsl-input {
 	input {
-		width: 33%;
+		width: 25%;
+	}
+	.rgb-input__alpha {
+		display: none;
+	}
+}
+.rgb-input.alpha-enabled {
+	.rgb-input__alpha {
+		display: inline-block;
 	}
 }
 
@@ -39,6 +47,9 @@
 		margin-left: 5px;
 		display: inline-block;
 		verical-align: middle;
+	}
+	input[type="number"]{
+		max-width: 75px;
 	}
 	.color-input__display {
 		display: none;

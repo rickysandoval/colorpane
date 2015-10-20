@@ -9,7 +9,7 @@ var CHANGE_EVENT = 'change';
 var _hue = Math.floor(Math.random()*360),
     _saturation = 1,
     _lightness = .5,
-    _alpha = 1,
+    _alpha = .75,
     _alphaEnabled = false;
 
 
@@ -110,9 +110,11 @@ AppDispatcher.register(function(action) {
     case ColorConstants.ALPHA_ENABLED_UPDATE:
       var enabled = action.alphaEnabled;
       if (enabled){
-        updateAlpha(true);
+        updateAlphaEnabled(true);
+        ColorStore.emitChange();
       } else {
-        updateAlpha(false);
+        updateAlphaEnabled(false);
+        ColorStore.emitChange();
       }
       break
     case ColorConstants.HEX_UPDATE:
@@ -128,10 +130,15 @@ AppDispatcher.register(function(action) {
     case ColorConstants.RGB_UPDATE:
       var rgb = action.rgb;
       var hsl = colorUtils.rgb2hsl(rgb[0], rgb[1], rgb[2]);
+      var alpha = rgb[3];
       if (hsl) {
         updateHue(hsl[0]);
         updateSaturation(hsl[1]);
         updateLightness(hsl[2]);
+        ColorStore.emitChange();
+      }
+      if (typeof alpha == 'number' && validAlpha(+alpha)) {
+        updateAlpha(+alpha);
         ColorStore.emitChange();
       }
       break;

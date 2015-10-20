@@ -17,7 +17,7 @@ var utils = {
 	    var r = 255 * (rgb[0] + m);
 	    var g = 255 * (rgb[1] + m);
 	    var b = 255 * (rgb[2] + m);
-	    return [+r.toPrecision(4), +g.toPrecision(4), +b.toPrecision(4)];
+	    return [+r.toFixed(8), +g.toFixed(8), +b.toFixed(8)];
 	},
 
 	rgb2hsl: function(r,g,b) {
@@ -57,7 +57,7 @@ var utils = {
 		} else {
 			S = delta/(1-Math.abs(2*L-1));
 		}
-		return [+H.toPrecision(4),+S.toPrecision(4),+L.toPrecision(4)]
+		return [+H.toFixed(8),+S.toFixed(8),+L.toFixed(8)]
 	},
 
 	hsl2rgb: function(h,s,l) {
@@ -83,7 +83,7 @@ var utils = {
 	        b = hue2rgb(p, q, h - 1/3);
 	    }
 
-	    return [+(r * 255).toPrecision(4), +(g * 255).toPrecision(4), +(b * 255).toPrecision(4)];
+	    return [+(r * 255).toPrecision(8), +(g * 255).toFixed(8), +(b * 255).toFixed(8)];
 	},
 
 	hsl2hex: function(h,s,l) {

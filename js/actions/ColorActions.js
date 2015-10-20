@@ -33,7 +33,7 @@ var ColorActions = {
 
   updateAlphaEnabled: function(enabled) {
     AppDispatcher.dispatch({
-      actionType: ColorConstants.ALPHA_UPDATE,
+      actionType: ColorConstants.ALPHA_ENABLED_UPDATE,
       alphaEnabled: enabled
     });
   },

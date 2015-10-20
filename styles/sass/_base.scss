@@ -16,6 +16,9 @@ canvas {
 }
 input {
 	max-width: 100%;
+	&:invalid {
+		box-shadow: none;
+	}
 }
 [data-reactid] {
 	font-weight: inherit;
@@ -28,7 +31,7 @@ input {
 	align-items: stretch;
 }
 .picker-controls {
-	width: 27.5*$unit;
+	width: 35*$unit;
 	padding: 2.5*$unit 1.5*$unit;
 }
 .picker-wheel {
@@ -42,5 +45,5 @@ input {
 .picker-display {
 	height: auto;
 	padding: 2.5*$unit 1.5*$unit;
-	width: calc(67% - 275px);
+	width: calc(67% - 350px);
 }

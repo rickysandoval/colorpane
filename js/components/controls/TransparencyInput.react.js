@@ -81,7 +81,7 @@ var TransparencyInput = React.createClass({
 		if (this.state.hasTransparency) {
 			this.setState({
 				isEditing: false
-			}, this._saveEnabled);
+			});
 		}
 		this.setState({
 			hasTransparency: !this.state.hasTransparency

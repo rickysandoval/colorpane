@@ -25,7 +25,7 @@ var ControlPane = React.createClass({
 			<div style={style} className="picker-inputs">
 				<div className="picker-inputs__inner">
 					<HslDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
-					<RgbDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} alpha={this.props.alpha} />
+					<RgbDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} alpha={this.props.alpha} alphaEnabled={this.props.alphaEnabled}/>
 					<HexDisplay color={[this.props.hue, this.props.saturation, this.props.lightness]} />
 					<TransparencyInput hasTransparency={this.props.alphaEnabled} alpha={this.props.alpha}/>
 				</div>

@@ -1,1 +1,4 @@
 handle case when inputs showing but interact with pickers
+
+^^ now can't put even numbers, fucks with things
+check rgb -> hsl -> rgb, may be rounding issues

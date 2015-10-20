@@ -83,6 +83,9 @@ var browserifyTask = function(options) {
 		.pipe(notify(function() {
 			console.log('VENDORS bundle built in ' + (Date.now() - start) + 'ms');
 		}));
+
+	gulp.src('./img/*')
+		.pipe(gulp.dest('./build/img'));
 };
 
 var cssTask = function(options) {

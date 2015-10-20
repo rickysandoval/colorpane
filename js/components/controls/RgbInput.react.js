@@ -1,4 +1,5 @@
 var React = require('react');
+var classNames = require('classnames');
 
 var RgbInput = React.createClass({
 
@@ -6,14 +7,17 @@ var RgbInput = React.createClass({
 		onSave: React.PropTypes.func.isRequired,
 		r: React.PropTypes.number.isRequired,
 		g: React.PropTypes.number.isRequired,
-		b: React.PropTypes.number.isRequired
+		b: React.PropTypes.number.isRequired,
+		alpha: React.PropTypes.number.isRequired,
+		alphaEnabled: React.PropTypes.bool.isRequired
 	},
 
 	getInitialState: function() {
 		return {
 			r: this.props.r || 0,
 			g: this.props.g || 0,
-			b: this.props.b || 0
+			b: this.props.b || 0,
+			a: this.props.alpha || 0
 		};
 	},
 
@@ -22,14 +26,15 @@ var RgbInput = React.createClass({
 			this.setState({
 				r: this.props.r,
 				g: this.props.g,
-				b: this.props.b
+				b: this.props.b,
+				a: this.props.alpha
 			});
 		}
 	},
 
 	render: function() {
 		return (
-			<div className="rgb-input">
+			<div className={classNames("rgb-input", {"alpha-enabled": this.props.alphaEnabled})}>
 				<input
 					min="0"
 					max="255"
@@ -57,6 +62,17 @@ var RgbInput = React.createClass({
 					onChange={this._onChange}
 					ref="bInput"
 				/>
+				<input
+					className="rgb-input__alpha"
+					min="0"
+					max="1"
+					type="number"
+					step=".1"
+					value={this.state.a}
+					onKeyDown={this._handleKeyDown}
+					onChange={this._onChange}
+					ref="aInput"
+				/>
 			</div>
 		);
 	},
@@ -71,7 +87,8 @@ var RgbInput = React.createClass({
 		this.setState({
 			r: React.findDOMNode(this.refs.rInput).valueAsNumber,
 			g: React.findDOMNode(this.refs.gInput).valueAsNumber,
-			b: React.findDOMNode(this.refs.bInput).valueAsNumber
+			b: React.findDOMNode(this.refs.bInput).valueAsNumber,
+			a: React.findDOMNode(this.refs.aInput).valueAsNumber
 		}, this._save.bind(this, true));
 	},
 
@@ -79,7 +96,8 @@ var RgbInput = React.createClass({
 		this.props.onSave([
 			Math.min(Math.max(this.state.r || 0, 0), 255),
 			Math.min(Math.max(this.state.g || 0, 0), 255),
-			Math.min(Math.max(this.state.b || 0, 0), 255)
+			Math.min(Math.max(this.state.b || 0, 0), 255),
+			Math.min(Math.max(this.state.a || 0, 0), 1)
 		], keepOpen);
 	}
 });
