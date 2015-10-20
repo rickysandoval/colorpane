@@ -53,12 +53,15 @@ var browserifyTask = function(options) {
 			.pipe(notify(function() {
 				console.log('App bundle build in ' + (Date.now() - start) + 'ms');
 			}));
+		gulp.src('./index.html')
+			.pipe(gulp.dest('./build'));
 	};
 
 	// Fire up watchify when developing
 	if (options.development) {
 		appBundler = watchify(appBundler);
 		appBundler.on('update', rebundle);
+		gulp.watch('./index.html', rebundle);
 	}
 
 	rebundle();
@@ -86,6 +89,7 @@ var browserifyTask = function(options) {
 
 	gulp.src('./img/*')
 		.pipe(gulp.dest('./build/img'));
+
 };
 
 var cssTask = function(options) {
