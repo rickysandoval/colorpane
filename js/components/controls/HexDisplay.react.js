@@ -63,7 +63,6 @@ var HexDisplay = React.createClass({
 	},
 
 	_openCopy: function() {
-		console.log('open copy');
 		var input = React.findDOMNode(this.refs.copyText);
 		if (!this.state.isCopying) {
 			this.setState({isCopying: true});
