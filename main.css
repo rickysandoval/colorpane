@@ -525,3 +525,22 @@ input {
     margin-bottom: 0; }
   .transparency-input:not(.editing).enabled .color-input__display {
     display: block; }
+
+.color-input__copy-button {
+  margin-left: 5px;
+  cursor: pointer; }
+  .color-input__copy-button img {
+    width: 15px; }
+
+.color-input__copy-text {
+  font: 1.4rem/1.375em "Lato";
+  margin-left: 10px;
+  color: #666;
+  display: none; }
+
+.copying .color-input__copy-text {
+  display: inline-block; }
+  .copying .color-input__copy-text input {
+    border: none;
+    background: transparent;
+    outline: none; }
