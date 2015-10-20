@@ -9,12 +9,14 @@
 }
 .picker-display__background-image {
 	position: absolute;
-	bottom: 0;
-	padding: 2.5*$unit 1.5*$unit;
-	img {
-		width: calc(100% - 50px);
-		max-width: 100%;
-	}
+	top: 2.5*$unit;
+	right: 1.5*$unit;
+	left: 1.5*$unit;
+	bottom: 1.5*$unit;
+	background: url('/img/sloth.png');
+	background-size: 90% auto;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
 }
 .sample-header {
 	font: $font-h2;
@@ -32,5 +34,11 @@
 	}
 	.sample-paragraph {
 		color: white;
+	}
+}
+@media (max-width: $bp) {
+	.picker-display__background-image {
+		background-size: auto 75%;
+		background-repeat: repeat-x;
 	}
 }

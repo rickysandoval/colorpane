@@ -47,3 +47,12 @@ input {
 	padding: 2.5*$unit 1.5*$unit;
 	width: calc(67% - 350px);
 }
+
+@media (max-width: $bp) {
+	.picker-controls, .picker-wheel {
+		width: 50%;
+	}
+	.picker-display {
+		width: 100%;
+	}
+}

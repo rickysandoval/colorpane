@@ -29,7 +29,7 @@ var DisplayPane = React.createClass({
 				className={classNames("picker-display",{
 					'picker-display__dark' : this.props.lightness <= .45
 				})} >
-				<div className="picker-display__background-image"><img src="img/sloth.png"/></div>
+				<div className="picker-display__background-image"></div>
 				<div className="picker-display__inner" style={style}>
 					<DisplayText color={[this.props.hue, this.props.saturation, this.props.lightness]} />
 				</div>
